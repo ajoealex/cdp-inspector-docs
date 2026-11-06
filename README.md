@@ -2,9 +2,9 @@
 
 User guide for [CDP Inspector](https://github.com/ajoealex/remote-dev-tools-inspector-chrome-plugin), a Chrome extension that launches and remotely controls Chrome tabs over the Chrome DevTools Protocol (CDP) - screencast, raw CDP commands, live network inspection, device/location emulation, and JS execution on pages you don't have local access to.
 
-**Live page:** https://ajoealex.github.io/cdp-inspector-docs/
+Access the live document at:
 
-This repo contains only the static docs site (`index.html` + `images/`) published via GitHub Pages - it is not the extension itself.
+Live page: https://ajoealex.github.io/cdp-inspector-docs/
 
 ## Contents
 
