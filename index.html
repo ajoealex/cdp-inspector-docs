@@ -353,7 +353,7 @@
         <li>The copy button copies the command to your clipboard with a checkmark confirmation; a small banner below reminds you to periodically clear out <code class="inline-code">cdp_inspector/webprofiles</code> to free disk space.</li>
       </ul>
       <figure class="shot">
-        <img src="images/popup-main.png" alt="CDP Inspector popup showing the launch command generator, connected debugging port, browser details, and the debuggable tabs list" />
+        <img src="./images/popup-main.png" alt="CDP Inspector popup showing the launch command generator, connected debugging port, browser details, and the debuggable tabs list" />
         <figcaption>The popup end to end: command generator, an active connection on port 9420, browser details, and one debuggable tab (a TailAdmin dashboard demo).</figcaption>
       </figure>
     </section>
@@ -419,7 +419,7 @@
         <a href="#tab-actions">Tab card actions</a> below.
       </p>
       <figure class="shot">
-        <img src="images/popup-connect-tabs.png" alt="The Debugging port connection card and Debuggable tabs list in the popup" />
+        <img src="./images/popup-connect-tabs.png" alt="The Debugging port connection card and Debuggable tabs list in the popup" />
         <figcaption>Debugging port connection, browser details, and the live tab list once connected.</figcaption>
       </figure>
     </section>
@@ -439,11 +439,11 @@
       </ul>
       <div class="shot-row">
         <figure class="shot">
-          <img src="images/popup-newtab-blank.png" alt="New tab form with the URL field empty, about to create a blank tab" />
+          <img src="./images/popup-newtab-blank.png" alt="New tab form with the URL field empty, about to create a blank tab" />
           <figcaption>Blank tab - leave the URL field empty.</figcaption>
         </figure>
         <figure class="shot">
-          <img src="images/popup-newtab-url.png" alt="New tab form with a URL typed in, about to create a tab at that address" />
+          <img src="./images/popup-newtab-url.png" alt="New tab form with a URL typed in, about to create a tab at that address" />
           <figcaption>Tab with a URL - scheme is added automatically if you omit it.</figcaption>
         </figure>
       </div>
@@ -486,7 +486,7 @@
         starting point for every use case in <a href="#ai-debugging">AI &amp; automation use cases</a>.
       </p>
       <figure class="shot">
-        <img src="images/inspector-header.png" alt="Inspector panel header showing the connected tab, status, and an AI debugging prompt" />
+        <img src="./images/inspector-header.png" alt="Inspector panel header showing the connected tab, status, and an AI debugging prompt" />
         <figcaption>Panel header: connected tab info, port, status - plus a copyable AI-agent prompt pointed at this tab's CDP endpoint.</figcaption>
       </figure>
       <p>
@@ -527,7 +527,7 @@
         written back into the actual page.
       </p>
       <figure class="shot">
-        <img src="images/inspector-screencast.png" alt="Screencast pane showing a live TailAdmin dashboard demo with address bar and playback/input controls" />
+        <img src="./images/inspector-screencast.png" alt="Screencast pane showing a live TailAdmin dashboard demo with address bar and playback/input controls" />
         <figcaption>Live screencast of a real page (TailAdmin's dashboard demo) - fully interactive, not a static view.</figcaption>
       </figure>
     </section>
@@ -542,7 +542,7 @@
         that exact method's page in the official protocol reference.
       </p>
       <figure class="shot">
-        <img src="images/inspector-message-compose.png" alt="Message tab compose area with a Page.navigate command and JSON params filled in" />
+        <img src="./images/inspector-message-compose.png" alt="Message tab compose area with a Page.navigate command and JSON params filled in" />
         <figcaption>Composing a command: method autocomplete and JSON params, ready to send.</figcaption>
       </figure>
       <p>
@@ -553,7 +553,7 @@
         default (toggle) to keep it readable.
       </p>
       <figure class="shot">
-        <img src="images/inspector-message-response.png" alt="Message tab response log with sent and received entries" />
+        <img src="./images/inspector-message-response.png" alt="Message tab response log with sent and received entries" />
         <figcaption>The response log - sent commands (orange, up arrow) and received events/responses (blue, down arrow).</figcaption>
       </figure>
     </section>
@@ -568,21 +568,21 @@
       <h4>Custom HTTP headers</h4>
       <p>Apply extra headers to every subsequent request the page makes, via <code class="inline-code">Network.setExtraHTTPHeaders</code>.</p>
       <figure class="shot">
-        <img src="images/inspector-presets-headers.png" alt="Custom HTTP headers preset card" />
+        <img src="./images/inspector-presets-headers.png" alt="Custom HTTP headers preset card" />
         <figcaption>Custom HTTP headers - JSON object of header name/value pairs.</figcaption>
       </figure>
 
       <h4>Capture screenshot</h4>
       <p>Grab a PNG, JPEG, or WebP screenshot of the current page, optionally capturing the full scrollable page rather than just the viewport.</p>
       <figure class="shot">
-        <img src="images/inspector-presets-screenshot.png" alt="Capture screenshot preset card" />
+        <img src="./images/inspector-presets-screenshot.png" alt="Capture screenshot preset card" />
         <figcaption>Screenshot capture - format, quality (for JPEG/WebP), and full-page option.</figcaption>
       </figure>
 
       <h4>Device emulation</h4>
       <p>Switch between built-in device profiles (iPhone, iPad, Pixel, Desktop) or create and save your own custom profiles. See <a href="#device-profiles">Device profiles</a> below for the full create/edit flow.</p>
       <figure class="shot">
-        <img src="images/inspector-presets-device.png" alt="Device emulation preset card" />
+        <img src="./images/inspector-presets-device.png" alt="Device emulation preset card" />
         <figcaption>Device emulation - pick a profile, then Apply or Clear.</figcaption>
       </figure>
 
@@ -597,7 +597,7 @@
         geolocation behavior, without resetting the fields you'd typed.
       </p>
       <figure class="shot">
-        <img src="images/inspector-presets-location.png" alt="Location emulation preset card" />
+        <img src="./images/inspector-presets-location.png" alt="Location emulation preset card" />
         <figcaption>Location emulation. The remote page must still accept the geolocation permission prompt.</figcaption>
       </figure>
 
@@ -625,7 +625,7 @@
         </li>
       </ul>
       <figure class="shot">
-        <img src="images/inspector-presets-executejs.png" alt="Execute JavaScript preset card showing example code and its JSON result from a live TailAdmin dashboard page" />
+        <img src="./images/inspector-presets-executejs.png" alt="Execute JavaScript preset card showing example code and its JSON result from a live TailAdmin dashboard page" />
         <figcaption>Execute JavaScript - querying the live page's title, URL, and element counts, with the JSON result shown below.</figcaption>
       </figure>
     </section>
@@ -652,7 +652,7 @@
         and sync live across every open inspector panel window.
       </p>
       <figure class="shot">
-        <img src="images/inspector-device-profile-dialog.png" alt="Create device profile dialog pre-filled from the connected browser's real dimensions" />
+        <img src="./images/inspector-device-profile-dialog.png" alt="Create device profile dialog pre-filled from the connected browser's real dimensions" />
         <figcaption>Creating a profile, pre-filled from "Connected browser" - the live page's actual size, DPR, and user agent.</figcaption>
       </figure>
     </section>
@@ -673,7 +673,7 @@
         still-in-flight request as canceled rather than leaving it stuck "pending" forever.
       </p>
       <figure class="shot">
-        <img src="images/inspector-network-off.png" alt="Network tab before logging is enabled" />
+        <img src="./images/inspector-network-off.png" alt="Network tab before logging is enabled" />
         <figcaption>Before enabling - the toggle and the empty state explaining what it captures.</figcaption>
       </figure>
 
@@ -686,7 +686,7 @@
         <strong>Clear requests</strong> to empty it.
       </p>
       <figure class="shot">
-        <img src="images/inspector-network-list.png" alt="Network tab showing a populated list of captured requests from a real dashboard page load" />
+        <img src="./images/inspector-network-list.png" alt="Network tab showing a populated list of captured requests from a real dashboard page load" />
         <figcaption>Real traffic from reloading a live dashboard page - mixed resource types, a 304-cached asset, and a failed request, all color-coded.</figcaption>
       </figure>
 
@@ -698,7 +698,7 @@
         base events).
       </p>
       <figure class="shot">
-        <img src="images/inspector-network-expanded.png" alt="An expanded network request row showing full URL, status, and request headers" />
+        <img src="./images/inspector-network-expanded.png" alt="An expanded network request row showing full URL, status, and request headers" />
         <figcaption>Expanded row: full URL, status/type/size/timing, and the complete request headers sent on the wire.</figcaption>
       </figure>
       <div class="callout">
