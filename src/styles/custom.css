@@ -1,0 +1,38 @@
+:root {
+  --sl-color-accent-low: #152c60;
+  --sl-color-accent: #3b6fe8;
+  --sl-color-accent-high: #c7dbff;
+  --sl-color-bg: #0e1116;
+  --sl-color-bg-nav: #161a21;
+  --sl-color-bg-sidebar: #11151c;
+  --sl-content-width: 58rem;
+  --sl-sidebar-width: 20rem;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #e7efff;
+  --sl-color-accent: #2457d6;
+  --sl-color-accent-high: #163880;
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: #f7f9fc;
+  --sl-color-bg-sidebar: #f7f9fc;
+}
+
+.site-title img { width: 2rem; height: 2rem; object-fit: contain; }
+.legacy-anchor { scroll-margin-top: 6rem; }
+.sl-markdown-content figure.doc-screenshot {
+  margin-block: 1.5rem;
+  overflow: hidden;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.75rem;
+  background: #161a21;
+}
+.sl-markdown-content figure.doc-screenshot img { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+.sl-markdown-content figure.doc-screenshot figcaption {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #2f3743;
+  color: #c3ccd9;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
