@@ -1,0 +1,134 @@
+---
+import '@pagefind/default-ui/css/ui.css'
+
+const label = Astro.locals.t('search.label')
+---
+
+<relative-site-search data-label={label} data-dev={import.meta.env.DEV || undefined}>
+  <button data-open-modal disabled aria-label={label} aria-keyshortcuts="Control+K">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="10" cy="10" r="6" /><path d="m15 15 6 6" />
+    </svg>
+    <span>{label}</span><kbd>Ctrl K</kbd>
+  </button>
+  <dialog aria-label={label}>
+    <div class="search-frame">
+      <button data-close-modal>{Astro.locals.t('search.cancelLabel')}</button>
+      <div id="guide-search"></div>
+    </div>
+  </dialog>
+</relative-site-search>
+
+<script>
+  class RelativeSiteSearch extends HTMLElement {
+    constructor() {
+      super()
+      const openButton = this.querySelector<HTMLButtonElement>('[data-open-modal]')!
+      const closeButton = this.querySelector<HTMLButtonElement>('[data-close-modal]')!
+      const dialog = this.querySelector('dialog')!
+      const container = this.querySelector<HTMLElement>('#guide-search')!
+      let initialized: Promise<void> | undefined
+
+      const initialize = async () => {
+        if (this.hasAttribute('data-dev')) {
+          container.textContent = 'Search is available in the production build. Run npm run build and npm run preview.'
+          return
+        }
+        // The public script sits at the build root, wherever this folder is hosted.
+        const rootScript = document.querySelector<HTMLScriptElement>('script[data-docs-root]')!
+        const relativeRoot = rootScript.getAttribute('src')!.replace(/[^/]+$/, '')
+        const root = new URL('.', rootScript.src)
+        const relativeResult = (value: string) => {
+          const url = new URL(value, root)
+          if (url.origin !== root.origin || !url.pathname.startsWith(root.pathname)) return value
+          return relativeRoot + url.pathname.slice(root.pathname.length) + url.search + url.hash
+        }
+        // @ts-expect-error Pagefind's UI package does not ship TypeScript definitions.
+        const { PagefindUI } = await import('@pagefind/default-ui')
+        new PagefindUI({
+          element: '#guide-search',
+          baseUrl: root.pathname,
+          bundlePath: new URL('pagefind/', root).href,
+          showImages: false,
+          showSubResults: true,
+          translations: { placeholder: this.dataset.label },
+          processResult: (result: { url: string; sub_results: Array<{ url: string }> }) => {
+            result.url = relativeResult(result.url)
+            for (const subResult of result.sub_results) subResult.url = relativeResult(subResult.url)
+            return result
+          },
+        })
+      }
+      const open = async () => {
+        dialog.showModal()
+        document.body.toggleAttribute('data-search-modal-open', true)
+        try {
+          await (initialized ??= initialize())
+          container.querySelector('input')?.focus()
+        } catch (error) {
+          initialized = undefined
+          container.textContent = 'Search could not load. Close this dialog and try again.'
+          console.error('Could not load the guide search', error)
+        }
+      }
+      openButton.disabled = false
+      openButton.addEventListener('click', open)
+      closeButton.addEventListener('click', () => dialog.close())
+      dialog.addEventListener('click', event => {
+        if (event.target === dialog || (event.target instanceof Element && event.target.closest('a'))) dialog.close()
+      })
+      dialog.addEventListener('close', () => {
+        document.body.toggleAttribute('data-search-modal-open', false)
+        openButton.focus()
+      })
+      document.addEventListener('keydown', event => {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+          event.preventDefault()
+          if (dialog.open) dialog.close()
+          else void open()
+        }
+      })
+      if (/(Mac|iPhone|iPad|iPod)/i.test(navigator.platform)) {
+        this.querySelector('kbd')!.textContent = '⌘ K'
+        openButton.setAttribute('aria-keyshortcuts', 'Meta+K')
+      }
+    }
+  }
+  customElements.define('relative-site-search', RelativeSiteSearch)
+</script>
+
+<style>
+  relative-site-search {
+    --pagefind-ui-primary: var(--sl-color-text-accent);
+    --pagefind-ui-text: var(--sl-color-text);
+    --pagefind-ui-background: var(--sl-color-bg);
+    --pagefind-ui-border: var(--sl-color-gray-5);
+    --pagefind-ui-tag: var(--sl-color-gray-6);
+    --pagefind-ui-font: var(--sl-font-system);
+  }
+  button { color: var(--sl-color-text); cursor: pointer; font: inherit; }
+  [data-open-modal] {
+    display: flex; align-items: center; gap: 0.75rem; height: 2.5rem;
+    padding: 0.5rem 0.75rem; width: min(22rem, 100%); border-radius: 0.5rem;
+    border: 1px solid var(--sl-color-gray-5); background: var(--sl-color-bg);
+  }
+  [data-open-modal] span { font-size: 0.875rem; }
+  kbd { margin-inline-start: auto; font-size: 0.75rem; white-space: nowrap; }
+  dialog {
+    width: min(42rem, calc(100% - 2rem)); max-height: calc(100% - 4rem);
+    margin: 4rem auto auto; padding: 0; border-radius: 0.75rem;
+    border: 1px solid var(--sl-color-gray-5); background: var(--sl-color-bg);
+    color: var(--sl-color-text);
+  }
+  dialog::backdrop { background: #0009; }
+  .search-frame { padding: 1rem; }
+  [data-close-modal] {
+    display: block; margin: 0 0 0.75rem auto; border: 0; background: transparent;
+  }
+  :global(body[data-search-modal-open]) { overflow: hidden; }
+  @media (max-width: 49.99rem) {
+    [data-open-modal] { width: 2rem; height: 2rem; padding: 0.25rem; border: 0; background: transparent; }
+    [data-open-modal] span, kbd { display: none; }
+    dialog { margin-block-start: 1rem; max-height: calc(100% - 2rem); }
+  }
+</style>
