@@ -1,9 +1,0 @@
-node_modules/
-dist/
-.astro/
-.sites-runtime/
-public/images/
-public/googlea34850c66d258141.html
-public/legacy-routes.js
-.DS_Store
-Thumbs.db
